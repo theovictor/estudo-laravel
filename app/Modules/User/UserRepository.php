@@ -1,33 +1,34 @@
 <?php
 
-namespace App\Repositories;
-use App\Models\User;
+namespace App\Modules\User;
+
+use App\Modules\User\UserModel;
 
 class UserRepository implements UserInterface {
 
   public function create(array $data) {
-    return User::create($data);
+    return UserModel::create($data);
   }
 
   public function findOne(int $id) {
-    return User::find($id);
+    return UserModel::find($id);
   }
 
   public function update(int $id, array $data){
-    $user = User::findOrFail($id);
+    $user = UserModel::findOrFail($id);
     $user->update($data);
     return $user;
   }
 
   public function delete(int $id) {
-    return User::destroy($id);
+    return UserModel::destroy($id);
   }
 
   public function findByEmail(string $email) {
-    return User::where('email', $email)->first();
+    return UserModel::where('email', $email)->first();
   }
 
   public function findAll() {
-    return User::find();
+    return UserModel::find();
   }
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Modules\User;
 
-use App\Repositories\UserRepository;
+use App\Modules\User\userDTO\createUserDTO;
+use App\Modules\User\UserRepository;
 
 class UserService {
   private $userRepo;
@@ -10,8 +11,8 @@ class UserService {
     $this->userRepo = $userRepo;
   }
 
-  public function create(array $data) {
-    return $this->userRepo->create($data);
+  public function create(createUserDTO $createUserDTO): UserModel {
+    return $this->userRepo->create($createUserDTO);
   }
 
   public function findOne(int $id) {

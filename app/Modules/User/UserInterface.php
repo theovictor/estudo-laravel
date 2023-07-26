@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Modules\User;
 
 interface UserInterface {
   public function create(array $data);

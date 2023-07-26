@@ -1,18 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\User;
 
-use App\Services\UserService;
+// use App\Modules\User\UserModel;
+use App\Modules\User\userDTO\createUserDTO;
+use App\Http\Controllers\Controller;
+use App\Modules\User\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller{
   private $userService;
+
   public function __construct(UserService $userService) {
     $this->userService = $userService;
   }
 
   public function create(Request $req) {
-    $data = $req->all();
+    $data = new createUserDTO(
+      $req->input('name'),
+      $req->input('email'),
+      $req->input('password')
+    );
     $user = $this->userService->create($data);
 
     return response()->json($user, 201);
