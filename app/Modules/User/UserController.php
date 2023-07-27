@@ -2,11 +2,12 @@
 
 namespace App\Modules\User;
 
-// use App\Modules\User\UserModel;
-use App\Modules\User\userDTO\createUserDTO;
 use App\Http\Controllers\Controller;
+use App\Modules\User\userDTO\createUserValidate;
+use App\Modules\User\userDTO\updateUserValidate;
 use App\Modules\User\UserService;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller{
   private $userService;
@@ -15,28 +16,31 @@ class UserController extends Controller{
     $this->userService = $userService;
   }
 
-  public function create(Request $req) {
-    $data = new createUserDTO(
-      $req->input('name'),
-      $req->input('email'),
-      $req->input('password')
-    );
+  public function create(createUserValidate $req) {
+    $data = $req->validated();
     $user = $this->userService->create($data);
-
     return response()->json($user, 201);
   }
 
-  public function findOne(int $id) {
-    $user = $this->userService->findOne($id);
+  // public function findOne(int $id) {
+  //   $user = $this->userService->findOne($id);
 
-    return response()->json($user, 200);
-  }
+  //   return response()->json($user, 200);
+  // }
 
-  public function update(Request $req, int $id) {
-    $data = $req->all();
-    $user = $this->userService->update($id, $data);
-
-    return response()->json($user, 200);
+  public function update(updateUserValidate $req, int $id) {
+    try {
+      $data = $req->validated();
+      $user = $this->userService->update($id, $data);
+      return response()->json($user, 200);
+    } catch (Exception $e) {
+      if($e instanceof ModelNotFoundException) {
+        return response()->json([
+          'status' => 404,
+          'message' =>'Error to update user.'
+        ], 404);
+      }
+    }
   }
 
   public function delete(int $id) {

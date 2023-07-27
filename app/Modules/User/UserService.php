@@ -2,7 +2,6 @@
 
 namespace App\Modules\User;
 
-use App\Modules\User\userDTO\createUserDTO;
 use App\Modules\User\UserRepository;
 
 class UserService {
@@ -11,15 +10,21 @@ class UserService {
     $this->userRepo = $userRepo;
   }
 
-  public function create(createUserDTO $createUserDTO): UserModel {
-    return $this->userRepo->create($createUserDTO);
+  public function create(array $data) {
+    $data = array_map(function($el) {
+      return trim($el);
+    }, $data);
+    return $this->userRepo->create($data);
   }
 
-  public function findOne(int $id) {
-    return $this->userRepo->findOne($id);
-  }
+  // public function findOne(int $id) {
+  //   return $this->userRepo->findOne($id);
+  // }
 
   public function update(int $id, array $data) {
+    $data = array_map(function($el) {
+      return trim($el);
+    }, $data);
     return $this->userRepo->update($id, $data);
   }
 

@@ -10,4 +10,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->group(function(){
   Route::post('create', [UserController::class, 'create']);
+  Route::patch('update/{id}', [UserController::class, 'update']);
 });
