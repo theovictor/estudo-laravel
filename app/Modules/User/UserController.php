@@ -3,16 +3,15 @@
 namespace App\Modules\User;
 
 use App\Http\Controllers\Controller;
-use App\Modules\User\userDTO\createUserValidate;
-use App\Modules\User\userDTO\updateUserValidate;
+use App\Modules\User\userValidate\createUserValidate;
+use App\Modules\User\userValidate\updateUserValidate;
 use App\Modules\User\UserService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserController extends Controller{
-  private $userService;
 
-  public function __construct(UserService $userService) {
+  public function __construct(private UserService $userService) {
     $this->userService = $userService;
   }
 
@@ -22,11 +21,10 @@ class UserController extends Controller{
     return response()->json($user, 201);
   }
 
-  // public function findOne(int $id) {
-  //   $user = $this->userService->findOne($id);
-
-  //   return response()->json($user, 200);
-  // }
+  public function findById(int $id) {
+    $user = $this->userService->findById($id);
+    return response()->json($user, 200);
+  }
 
   public function update(updateUserValidate $req, int $id) {
     try {
@@ -45,15 +43,12 @@ class UserController extends Controller{
 
   public function delete(int $id) {
     $this->userService->delete($id);
-
     return response()->json(null, 204);
   }
 
   // public function findByEmail(string $email){
-
   // }
 
   // public function findAll(string $find) {
-
   // }
 }

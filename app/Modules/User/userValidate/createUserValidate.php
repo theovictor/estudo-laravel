@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\User\userDTO;
+namespace App\Modules\User\userValidate;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
