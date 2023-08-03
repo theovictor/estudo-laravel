@@ -1,15 +1,13 @@
-<?php
+<?php namespace App\Modules\User;
 
-namespace App\Modules\User;
-
-use App\Http\Controllers\Controller;
+use App\Moduels\_mainController\Controller;
 use App\Modules\User\userValidate\createUserValidate;
 use App\Modules\User\userValidate\updateUserValidate;
 use App\Modules\User\UserService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class UserController extends Controller{
+class UserController extends Controller {
 
   public function __construct(private UserService $userService) {
     $this->userService = $userService;

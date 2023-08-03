@@ -1,9 +1,6 @@
-<?php
+<?php namespace App\Modules\User;
 
-namespace App\Modules\User;
-
-use App\Modules\baseRepository\RepositoryBase;
-use App\Modules\User\UserModel;
+use App\Modules\_baseRepository\RepositoryBase;
 
 class UserRepository implements UserInterface {
   public function __construct(private UserModel $model, private RepositoryBase $base) {

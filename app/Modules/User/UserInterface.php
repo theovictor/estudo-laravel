@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Modules\User;
+<?php namespace App\Modules\User;
 
 interface UserInterface {
   public function findAll();

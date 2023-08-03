@@ -1,8 +1,4 @@
-<?php
-
-namespace App\Modules\User;
-
-use App\Modules\User\UserRepository;
+<?php namespace App\Modules\User;
 
 class UserService {
 

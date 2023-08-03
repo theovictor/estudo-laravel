@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Modules\baseRepository;
+<?php namespace App\Modules\_baseRepository;
 
 class RepositoryBase implements ICrudBase {
 
