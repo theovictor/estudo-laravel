@@ -28,12 +28,3 @@ return new class extends Migration {
     Schema::dropIfExists('anexos');
   }
 };
-
-// docker run \
-// -p 9000:9000 \
-// -p 9090:9090 \
-// --name minio \
-// -v "$(pwd)/minio/data:/data" \
-// -e "MINIO_ROOT_USER=administrador" \
-// -e "MINIO_ROOT_PASSWORD=development" \
-// quay.io/minio/minio server /data --console-address ":9090"
