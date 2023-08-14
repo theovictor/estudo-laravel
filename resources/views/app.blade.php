@@ -8,5 +8,6 @@
 </head>
 <body>
   <h1>Hello Word ??</h1>
+  <x-button.item title={{$title}} class="btn"></x-button.item>
 </body>
 </html>
